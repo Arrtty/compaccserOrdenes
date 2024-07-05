@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tabla de Datos</title>
+  <meta charset="utf-8">
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .download-btn {
+      padding: 6px 12px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+
+    .download-btn:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+<h1>Tabla de Datos</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Número de Orden</th>
+    <th>Empresa</th>
+    <th>Cliente</th>
+    <th>Marca</th>
+    <th>Equipo</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <?php
+      // Conectar a la base de datos
+      $conexion = mysqli_connect('localhost', 'root', '', 'compaccser');
+
+      // Verificar la conexión
+      if (!$conexion) {
+        die('Error de conexión a la base de datos: ' . mysqli_connect_error());
+      }
+
+      // Consultar los datos
+      $consulta = "SELECT numero_orden, empresa, cliente, marca, equipo FROM tabla_datos";
+      $resultado = mysqli_query($conexion, $consulta);
+
+      // Mostrar los datos en la tabla
+      while ($fila = mysqli_fetch_assoc($resultado)) {
+        echo '<tr>';
+  echo '<td>' . $fila['numero_orden'] . '</td>';
+  echo '<td>' . $fila['empresa'] . '</td>';
+  echo '<td>' . $fila['cliente'] . '</td>';
+  echo '<td>' . $fila['marca'] . '</td>';
+  echo '<td>' . $fila['equipo'] . '</td>';
+  echo '<td><a class="download-btn" href="generar_pdf.php?id=' . $fila['numero_orden'] . '">Descargar PDF</a></td>';
+  echo '</tr>';
+  }
+
+  // Cerrar la conexión a la base de datos
+  mysqli_close($conexion);
+  ?>
+  </tbody>
+</table>
+</body>
+</html>
