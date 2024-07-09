@@ -266,7 +266,7 @@
           echo '<td>' . nl2br($wrappedDescripcion) . '</td>';
 
           echo '<td><a class="download-btn" href="generar-pdfSQL.php?id=' . $fila['no_Orden'] . '"><i class="fas fa-file-download"></i></a>
-          <a class="edit-btn" href="generar-pdfSQL.php?id=' . $fila['no_Orden'] . '"><i class="fas fa-edit"></i></a>
+          <a class= edit-btn href="#" id="dual-action-link" data-new-tab="editar.php" data-current-tab="ordenes.php"><i class="fas fa-edit"></i></a>
           <a class="delete-btn" href="generar-pdfSQL.php?id=' . $fila['no_Orden'] . '"><i class="fas fa-trash"></i></a></td>';
 
           echo '</tr>';
@@ -280,6 +280,21 @@
       </tbody>
     </table>
   </div>
+  <script>
+    document.getElementById('dual-action-link').addEventListener('click', function (event) {
+      event.preventDefault(); // Previene la acción por defecto del enlace
+
+      // Obtiene las URLs de los atributos data
+      var newTabUrl = this.getAttribute('data-new-tab');
+      var currentTabUrl = this.getAttribute('data-current-tab');
+
+      // Abre la URL en una nueva pestaña
+      window.open(newTabUrl, '_blank');
+
+      // Redirige la página actual a otra URL
+      window.location.href = currentTabUrl;
+    });
+  </script>
 </body>
 
 </html>
