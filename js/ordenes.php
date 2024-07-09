@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tabla de Datos</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     body {
       background-color: #292929;
@@ -24,11 +25,43 @@
       border-radius: 4px;
       text-decoration: none;
       display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      word-wrap: break-word;
+    }
+
+    .edit-btn {
+      padding: 6px 12px;
+      background-color: #556BEE;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      word-wrap: break-word;
+    }
+
+    .delete-btn {
+      padding: 6px 12px;
+      background-color: #D33F3F;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       word-wrap: break-word;
     }
 
     .download-btn:hover {
       background-color: #45a049;
+    }
+
+    .download-btn i {
+      margin-right: 8px;
     }
 
     .logo.logo1 img {
@@ -114,17 +147,17 @@
       padding: 12px;
       border: 1px solid #ddd;
       word-wrap: break-word;
-      /* Permite el ajuste de palabras largas */
+      overflow: hidden;
+      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      /* Trunca el texto con puntos suspensivos */
-      white-space: nowrap;
-      /* Evita que el texto se envuelva en varias líneas */
+      text-align: center;
     }
 
     table th {
       background-color: #454545;
       color: white;
+      text-align: center;
     }
 
     h1 {
@@ -148,10 +181,7 @@
         font-size: 14px;
       }
 
-      table th,
-      table td {
-        font-size: 12px;
-      }
+
     }
   </style>
 </head>
@@ -235,13 +265,18 @@
           $wrappedDescripcion = wordwrap($descripcion, $maxLineLength, "\n", true);
           echo '<td>' . nl2br($wrappedDescripcion) . '</td>';
 
-          echo '<td><a class="download-btn" href="generar-pdfSQL.php?id=' . $fila['no_Orden'] . '">Descargar PDF</a></td>';
+          echo '<td><a class="download-btn" href="generar-pdfSQL.php?id=' . $fila['no_Orden'] . '"><i class="fas fa-file-download"></i></a>
+          <a class="edit-btn" href="generar-pdfSQL.php?id=' . $fila['no_Orden'] . '"><i class="fas fa-edit"></i></a>
+          <a class="delete-btn" href="generar-pdfSQL.php?id=' . $fila['no_Orden'] . '"><i class="fas fa-trash"></i></a></td>';
+
           echo '</tr>';
+
         }
 
         // Cerrar la conexión a la base de datos
         mysqli_close($conexion);
         ?>
+
       </tbody>
     </table>
   </div>
