@@ -106,7 +106,8 @@
     <div class="title">Generar órden</div>
   </div>
 
-  <form class="formulario" method="POST" action="../php/generar-pdf.php" onsubmit="return validarFormulario()">
+  <form target="_blank" class="formulario" method="POST" action="/php/generar-pdf.php"
+    onsubmit="return validarFormulario()">
 
     <h2>Formulario de Orden</h2>
 
@@ -165,6 +166,7 @@
 
 </html>
 
+
 <script>
 
   function autoExpand(textarea) {
@@ -191,8 +193,6 @@
     if (
       noOrden === '' ||
       cliente === '' ||
-      contacto === '' ||
-      telefono === '' ||
       celular === '' ||
       descripcion === '' ||
       tipoEquipo === '' ||
@@ -201,25 +201,27 @@
       serie === '' ||
       accesorios === '' ||
       ingeniero === '' ||
-      noOrden === ' ' ||
-      cliente === ' ' ||
-      contacto === ' ' ||
-      telefono === ' ' ||
-      celular === ' ' ||
-      descripcion === ' ' ||
-      tipoEquipo === ' ' ||
-      marca === ' ' ||
-      modelo === ' ' ||
-      serie === ' ' ||
-      accesorios === ' ' ||
-      ingeniero === ' '
+      noOrden === '' ||
+      cliente === '' ||
+      celular === '' ||
+      descripcion === '' ||
+      tipoEquipo === '' ||
+      marca === '' ||
+      modelo === '' ||
+      serie === '' ||
+      accesorios === '' ||
+      ingeniero === '' ||
+      
     ) {
       alert('Por favor, completa todos los campos obligatorios.');
       return false; // Detener el envío del formulario
+    } else {
+      window.location.href = '/pages/ordenes.php';
+      return true;
     }
 
     // Si todos los campos requeridos están llenos, permitir el envío del formulario
-    return true;
+
   }
 
   function autoExpand(textarea) {
