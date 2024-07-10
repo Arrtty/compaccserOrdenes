@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="EN">
+
 <head>
   <title>Formulario de Orden</title>
   <meta charset="utf-8">
+  <link rel="icon" href="img/logo.png">
   <style>
     body {
       background-color: #292929;
@@ -66,6 +68,7 @@
       font-size: 16px;
 
     }
+
     .navbar {
       background-color: #f8f8f8;
       height: 70px;
@@ -75,89 +78,91 @@
       align-items: center;
 
     }
+
     .title {
       margin-left: 435px;
       font-family: "Arial Black", sans-serif;
       font-size: 28px;
     }
 
-    .logo.logo1 img{
+    .logo.logo1 img {
       width: auto;
       height: 60px;
       display: inline-flex;
 
     }
-
-
   </style>
 </head>
+
 <body>
 
 
-<div class="navbar">
-  <div class="logo logo1">
-    <a href="index.html">
-    <img src="logo.JPEG" alt="Logo 1">
-    </a>
+  <div class="navbar">
+    <div class="logo logo1">
+      <a href="/">
+        <img src="logo.png" alt="Logo 1">
+      </a>
+    </div>
+    <div class="title">Generar órden</div>
   </div>
-  <div class="title">Generar órden</div>
-</div>
 
-<form class="formulario" method="POST" action="generar-pdf.php" onsubmit="return validarFormulario()">
+  <form class="formulario" method="POST" action="generar-pdf.php" onsubmit="return validarFormulario()">
 
-  <h2>Formulario de Orden</h2>
+    <h2>Formulario de Orden</h2>
 
-  <label for="fecha" >Fecha:</label>
-  <input type="date" id="fecha" name="fecha" value="<?php echo date('Y-m-d'); ?>"/>
+    <label for="fecha">Fecha:</label>
+    <input type="date" id="fecha" name="fecha" value="<?php echo date('Y-m-d'); ?>" />
 
-  <label for="no-orden" >No. de Orden:</label>
-  <input type="text" id="no-orden" name="no_orden" readonly>
+    <label for="no-orden">No. de Orden:</label>
+    <input type="text" id="no-orden" name="no_orden" readonly>
 
-  <label for="contacto">Contacto:</label>
-  <input type="text" id="contacto" name="contacto">
+    <label for="contacto">Contacto:</label>
+    <input type="text" id="contacto" name="contacto">
 
-  <label for="cliente">Cliente:</label>
-  <input type="text" id="cliente" name="cliente">
+    <label for="cliente">Cliente:</label>
+    <input type="text" id="cliente" name="cliente">
 
-  <label for="telefono">Teléfono:</label>
-  <input type="number" id="telefono" name="telefono">
+    <label for="telefono">Teléfono:</label>
+    <input type="number" id="telefono" name="telefono">
 
-  <label for="celular">Celular:</label>
-  <input type="number" id="celular" name="celular">
+    <label for="celular">Celular:</label>
+    <input type="number" id="celular" name="celular">
 
-  <label for="descripcion">Descripción de la Falla:</label>
-  <textarea id="descripcion" name="descripcion" rows="4" oninput="autoExpand(this)"></textarea>
+    <label for="descripcion">Descripción de la Falla:</label>
+    <textarea id="descripcion" name="descripcion" rows="4" oninput="autoExpand(this)"></textarea>
 
-  <label for="tipo_equipo">Tipo de Equipo:</label>
-  <input type="text" id="tipo_equipo" name="tipo_equipo">
+    <label for="tipo_equipo">Tipo de Equipo:</label>
+    <input type="text" id="tipo_equipo" name="tipo_equipo">
 
-  <label for="marca">Marca:</label>
-  <input type="text" id="marca" name="marca">
+    <label for="marca">Marca:</label>
+    <input type="text" id="marca" name="marca">
 
-  <label for="modelo">Modelo:</label>
-  <input type="text" id="modelo" name="modelo">
+    <label for="modelo">Modelo:</label>
+    <input type="text" id="modelo" name="modelo">
 
-  <label for="serie">Serie:</label>
-  <input type="text" id="serie" name="serie">
+    <label for="serie">Serie:</label>
+    <input type="text" id="serie" name="serie">
 
-  <label for="accesorios">Accesorios Recibidos:</label>
-  <textarea id="accesorios" name="accesorios" rows="4" oninput="autoExpand(this)" onblur="convertToList(this)"></textarea>
+    <label for="accesorios">Accesorios Recibidos:</label>
+    <textarea id="accesorios" name="accesorios" rows="4" oninput="autoExpand(this)"
+      onblur="convertToList(this)"></textarea>
 
 
-  <label for="ingeniero">Ingeniero de Soporte:</label>
-  <input type="text" id="ingeniero" name="ingeniero" list="lista_ingenieros">
-  <datalist id="lista_ingenieros">
-    <option value="Estanislao Santiago Francisco">
-    <option value="Ingeniero 2">
-    <option value="Ingeniero 3">
-      <!-- Puedes agregar más opciones de ingenieros aquí si lo deseas -->
-  </datalist>
+    <label for="ingeniero">Ingeniero de Soporte:</label>
+    <input type="text" id="ingeniero" name="ingeniero" list="lista_ingenieros">
+    <datalist id="lista_ingenieros">
+      <option value="Estanislao Santiago Francisco">
+      <option value="Ingeniero 2">
+      <option value="Ingeniero 3">
+        <!-- Puedes agregar más opciones de ingenieros aquí si lo deseas -->
+    </datalist>
 
-  <div class="button-container">
-    <button type="submit">Guardar Orden</button>
-  </div>
-</form>
+    <div class="button-container">
+      <button type="submit">Guardar Orden</button>
+    </div>
+  </form>
 </body>
+
 </html>
 
 <script>

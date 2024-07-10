@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="">
+
 <head>
   <title>Pantalla de Inicio</title>
   <meta charset="utf-8">
+  <link rel="icon" href="img/logo.png">
   <style>
     body {
       background-color: #292929;
@@ -14,10 +16,11 @@
       text-align: center;
     }
 
-    .logo.logo1 img{
+    .logo.logo1 img {
       width: auto;
       height: 60px;
       display: inline-flex;
+      background: 0%;
 
     }
 
@@ -37,9 +40,10 @@
       background-color: #45a049;
     }
 
-    .container{
+    .container {
       align-items: center;
     }
+
     .navbar {
       background-color: #f8f8f8;
       height: 70px;
@@ -49,6 +53,7 @@
       align-items: center;
 
     }
+
     .title {
       font-family: "Arial Black", sans-serif;
       font-size: 28px;
@@ -56,25 +61,27 @@
     }
   </style>
 </head>
+
 <body>
 
-<div class="navbar">
-  <div class="logo logo1">
-    <img src="logo.JPEG" alt="Logo 1">
+  <div class="navbar">
+    <div class="logo logo1">
+      <img src="img/logo.png" alt="Logo 1">
+    </div>
+    <div class="title">Menú principal</div>
   </div>
-  <div class="title">Menú principal</div>
-</div>
 
-<div class="container" id="base">
-  <div>
-    <img class="logo Logo2" src="logo.JPEG" alt="logo.jpeg">
+  <div class="container" id="base">
+    <div>
+      <img class="logo Logo2" src="img/logo.png" alt="logo.jpeg">
+    </div>
+    <a class="button" href="js/generar-orden.php">Generar Orden</a>
+
+    <a class="button" href="js/ordenes.php">Ver Órdenes</a>
+
+    <a class="button" href="js/formato.php">Modificar formato</a>
   </div>
-  <a class="button" href="generar-orden.php">Generar Orden</a>
-
-  <a class="button" href="ordenes.php">Ver Órdenes</a>
-
-  <a class="button" href="formato.php">Modificar formato</a>
-</div>
 
 </body>
+
 </html>

@@ -4,6 +4,7 @@
 <head>
     <title>Formulario de Orden</title>
     <meta charset="utf-8">
+    <link rel="icon" href="img/logo.png">
     <style>
         body {
             background-color: #292929;
@@ -69,7 +70,7 @@
         }
 
         .navbar {
-            background-color: #f8f8f8;
+            background-color: #C8FBFD;
             height: 70px;
             padding: 0 20px;
             margin-bottom: 100px;
@@ -98,11 +99,11 @@
 
     <div class="navbar">
         <div class="logo logo1">
-            <a href="index.html">
-                <img src="logo.JPEG" alt="Logo 1">
+            <a href="/">
+                <img src="logo.png" alt="Logo 1">
             </a>
         </div>
-        <div class="title">Generar órden</div>
+        <div class="title">Editar órden</div>
     </div>
 
     <form class="formulario" method="POST" action="generar-pdf.php" onsubmit="return validarFormulario()">
@@ -114,13 +115,14 @@
 
         <label for="no-orden">No. de Orden:</label>
         <input type="text" id="no-orden" name="no_orden" value="<?php
-        $id = $_GET['id'];
-        $conexion = mysqli_connect('localhost', 'root', '', 'compaccser', 3306, '');
-        $consulta = "SELECT FROM ordenes
-                         WHERE no_Orden LIKE '%$id%'";
-        $resultado = mysqli_query($conexion, $consulta);
-        $dato = mysqli_fetch_assoc($resultado);
-        echo $dato['no_Orden'];
+        #$id = $_GET['id'];
+        #$conexion = mysqli_connect('localhost', 'root', '', 'compaccser', 3306, '');
+        #$consulta = "SELECT FROM ordenes
+        #                 WHERE no_Orden LIKE '%$id%'";
+        #$resultado = mysqli_query($conexion, $consulta);
+        #$dato = mysqli_fetch_assoc($resultado);
+        #echo $dato['no_Orden'];
+        echo $_GET['id'];
         ?>
   " readonly>
 
@@ -238,35 +240,3 @@
 
 
 </script>
-<?php
-
-// Establecer conexión a la base de datos (usando PDO)
-$host = 'localhost';
-$dbName = 'compaccser';
-$username = 'root';
-$password = '';
-
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbName", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Error de conexión a la base de datos: " . $e->getMessage());
-}
-
-// Obtener el último número de orden de la base de datos y sumarle 1
-try {
-    $pdo->beginTransaction();
-    $stmt = $pdo->query("SELECT MAX(no_Orden) AS last_order FROM ordenes");
-    $lastOrder = $stmt->fetch(PDO::FETCH_ASSOC)['last_order'];
-    $nextOrder = $lastOrder + 1;
-
-    // Actualizar el campo "No. de Orden" en el formulario
-    echo '<script>document.getElementById("no-orden").value = ' . $nextOrder . ';</script>';
-
-    $pdo->commit();
-} catch (PDOException $e) {
-    $pdo->rollBack();
-    die("Error al obtener el número de orden: " . $e->getMessage());
-}
-
-

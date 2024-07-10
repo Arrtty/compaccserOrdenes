@@ -32,9 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Ingresar Pie de Página</title>
+  <link rel="icon" href="img/logo.png">
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -45,17 +48,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       background-color: #f8f8f8;
       background-color: #292929;
     }
+
     .formulario-container {
       display: flex;
       flex-direction: column;
       align-items: center;
       width: auto;
     }
+
     .formulario {
       font-family: Arial, sans-serif;
-      width: 80%; /* Cambiamos el ancho del formulario */
-      max-width: 500px; /* Limitamos el ancho máximo del formulario */
-      margin: 0 auto; /* Centramos el formulario horizontalmente */
+      width: 80%;
+      /* Cambiamos el ancho del formulario */
+      max-width: 500px;
+      /* Limitamos el ancho máximo del formulario */
+      margin: 0 auto;
+      /* Centramos el formulario horizontalmente */
       background-color: rgb(255, 255, 255);
       border: 1px solid #ccc;
       padding: 20px;
@@ -63,16 +71,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       height: auto;
       text-align: left;
     }
+
     label {
       display: block;
       font-weight: bold;
       margin-top: 10px;
     }
+
     textarea {
-      width: 100%; /* Hacemos el textarea ocupar todo el ancho del formulario */
+      width: 100%;
+      /* Hacemos el textarea ocupar todo el ancho del formulario */
       height: 200px;
       resize: none;
     }
+
     button {
       margin-top: 20px;
       padding: 10px 20px;
@@ -83,6 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       cursor: pointer;
       font-size: 16px;
     }
+
     .mensaje {
       text-align: center;
       font-weight: bold;
@@ -120,47 +133,49 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
   </style>
 </head>
+
 <body>
-<div class="navbar">
-  <div class="logo logo1">
-    <a href="index.html">
-      <img src="logo.JPEG" alt="Logo 1">
-    </a>
+  <div class="navbar">
+    <div class="logo logo1">
+      <a href="/">
+        <img src="logo.png" alt="Logo 1">
+      </a>
+    </div>
+    <div class="title">Formato</div>
   </div>
-  <div class="title">Formato</div>
-</div>
 
-<div class="formulario-container">
-  <h2>Nuevo pie de página</h2>
-  <form class="formulario" method="post">
-    <label for="texto">Texto del pie de página:</label>
-    <textarea id="texto" name="texto" placeholder="Ingrese el pie de página"></textarea>
-    <button type="submit">Guardar</button>
-  </form>
+  <div class="formulario-container">
+    <h2>Nuevo pie de página</h2>
+    <form class="formulario" method="post">
+      <label for="texto">Texto del pie de página:</label>
+      <textarea id="texto" name="texto" placeholder="Ingrese el pie de página"></textarea>
+      <button type="submit">Guardar</button>
+    </form>
 
-  <?php
-  // Aquí va el código PHP para guardar el pie de página en la base de datos, tal como lo tenías anteriormente.
+    <?php
+    // Aquí va el código PHP para guardar el pie de página en la base de datos, tal como lo tenías anteriormente.
+    
+    $host = 'localhost';
+    $dbName = 'compaccser';
+    $username = 'root';
+    $password = '';
+    // Obtener el último pie de página almacenado en la tabla 'formato'
+    try {
+      $pdo = new PDO("mysql:host=$host;dbname=$dbName", $username, $password);
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $host = 'localhost';
-  $dbName = 'compaccser';
-  $username = 'root';
-  $password = '';
-  // Obtener el último pie de página almacenado en la tabla 'formato'
-  try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbName", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $stmt = $pdo->query("SELECT pieP FROM formato ORDER BY ver DESC LIMIT 1");
+      $ultimoPiePagina = $stmt->fetch(PDO::FETCH_ASSOC)['pieP'];
+    } catch (PDOException $e) {
+      die("Error al obtener el pie de página: " . $e->getMessage());
+    }
+    ?>
 
-    $stmt = $pdo->query("SELECT pieP FROM formato ORDER BY ver DESC LIMIT 1");
-    $ultimoPiePagina = $stmt->fetch(PDO::FETCH_ASSOC)['pieP'];
-  } catch (PDOException $e) {
-    die("Error al obtener el pie de página: " . $e->getMessage());
-  }
-  ?>
-
-  <div class="mensaje">
-    Último pie de página guardado:<br>
-    <?php echo $ultimoPiePagina; ?>
+    <div class="mensaje">
+      Último pie de página guardado:<br>
+      <?php echo $ultimoPiePagina; ?>
+    </div>
   </div>
-</div>
 </body>
+
 </html>

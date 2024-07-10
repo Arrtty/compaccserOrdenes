@@ -2,9 +2,11 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tabla de Datos</title>
+  <link rel="icon" href="img/logo.png">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     body {
@@ -189,7 +191,7 @@
 <body>
   <div class="navbar">
     <div class="logo logo1">
-      <a href="index.html">
+      <a href="/">
         <img src="logo.JPEG" alt="Logo 1">
       </a>
     </div>
@@ -265,36 +267,36 @@
           $wrappedDescripcion = wordwrap($descripcion, $maxLineLength, "\n", true);
           echo '<td>' . nl2br($wrappedDescripcion) . '</td>';
 
-          echo '<td><a class="download-btn" href="generar-pdfSQL.php?id=' . $fila['no_Orden'] . '"><i class="fas fa-file-download"></i></a>
-          <a class= edit-btn href="#" id="dual-action-link" data-new-tab="editar.php" data-current-tab="ordenes.php"><i class="fas fa-edit"></i></a>
+          echo '<td>
+          <a class="download-btn" href="generar-pdfSQL.php?id=' . $fila['no_Orden'] . '"><i class="fas fa-file-download"></i></a>
+          <a class="edit-btn" href="#" data-id="' . $fila['no_Orden'] . '"><i class="fas fa-edit"></i></a>
           <a class="delete-btn" href="generar-pdfSQL.php?id=' . $fila['no_Orden'] . '"><i class="fas fa-trash"></i></a></td>';
-
           echo '</tr>';
 
+
         }
+
 
         // Cerrar la conexión a la base de datos
         mysqli_close($conexion);
         ?>
+        <script>
+          document.querySelectorAll('.edit-btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+              event.preventDefault();
+              const id = button.getAttribute('data-id');
+              // Abrir en una nueva pestaña
+              window.open(`editar.php?id=${id}`, '_blank');
+              // Recargar la página actual
+              location.reload();
+            });
+          });
+        </script>
 
       </tbody>
     </table>
   </div>
-  <script>
-    document.getElementById('dual-action-link').addEventListener('click', function (event) {
-      event.preventDefault(); // Previene la acción por defecto del enlace
 
-      // Obtiene las URLs de los atributos data
-      var newTabUrl = this.getAttribute('data-new-tab');
-      var currentTabUrl = this.getAttribute('data-current-tab');
-
-      // Abre la URL en una nueva pestaña
-      window.open(newTabUrl, '_blank');
-
-      // Redirige la página actual a otra URL
-      window.location.href = currentTabUrl;
-    });
-  </script>
 </body>
 
 </html>
