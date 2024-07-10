@@ -4,7 +4,7 @@
 <head>
     <title>Formulario de Orden</title>
     <meta charset="utf-8">
-    <link rel="icon" href="img/logo.png">
+    <link rel="icon" href="/img/logo.png">
     <style>
         body {
             background-color: #292929;
@@ -100,7 +100,7 @@
     <div class="navbar">
         <div class="logo logo1">
             <a href="/">
-                <img src="logo.png" alt="Logo 1">
+                <img src="/img/logo.png" alt="Logo 1">
             </a>
         </div>
         <div class="title">Editar órden</div>

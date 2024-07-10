@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tabla de Datos</title>
-  <link rel="icon" href="img/logo.png">
+  <link rel="icon" href="/img/logo.png">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -192,7 +192,7 @@
   <div class="navbar">
     <div class="logo logo1">
       <a href="/">
-        <img src="logo.JPEG" alt="Logo 1">
+        <img src="/img/logo.png" alt="Logo 1">
       </a>
     </div>
     <div class="title">Órdenes</div>
@@ -268,7 +268,7 @@
           echo '<td>' . nl2br($wrappedDescripcion) . '</td>';
 
           echo '<td>
-          <a class="download-btn" href="generar-pdfSQL.php?id=' . $fila['no_Orden'] . '"><i class="fas fa-file-download"></i></a>
+          <a class="download-btn" href="/php/generar-pdfSQL.php?id=' . $fila['no_Orden'] . '"><i class="fas fa-file-download"></i></a>
           <a class="edit-btn" href="#" data-id="' . $fila['no_Orden'] . '"><i class="fas fa-edit"></i></a>
           <a class="delete-btn" href="generar-pdfSQL.php?id=' . $fila['no_Orden'] . '"><i class="fas fa-trash"></i></a></td>';
           echo '</tr>';
@@ -286,7 +286,7 @@
               event.preventDefault();
               const id = button.getAttribute('data-id');
               // Abrir en una nueva pestaña
-              window.open(`editar.php?id=${id}`, '_blank');
+              window.open(`/pages/editar.php?id=${id}`, '_blank');
               // Recargar la página actual
               location.reload();
             });
