@@ -200,28 +200,14 @@
       modelo === '' ||
       serie === '' ||
       accesorios === '' ||
-      ingeniero === '' ||
-      noOrden === '' ||
-      cliente === '' ||
-      celular === '' ||
-      descripcion === '' ||
-      tipoEquipo === '' ||
-      marca === '' ||
-      modelo === '' ||
-      serie === '' ||
-      accesorios === '' ||
-      ingeniero === '' ||
-      
+      ingeniero === ''
     ) {
       alert('Por favor, completa todos los campos obligatorios.');
       return false; // Detener el envío del formulario
     } else {
       window.location.href = '/pages/ordenes.php';
-      return true;
+      return true; // Permitir el envío del formulario
     }
-
-    // Si todos los campos requeridos están llenos, permitir el envío del formulario
-
   }
 
   function autoExpand(textarea) {
