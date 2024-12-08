@@ -4,62 +4,9 @@
 <head>
   <title>Pantalla de Inicio</title>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="img/logo.png">
-  <style>
-    body {
-      background-color: #292929;
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    .container {
-      text-align: center;
-    }
-
-    .logo.logo1 img {
-      width: auto;
-      height: 60px;
-      display: inline-flex;
-      background: 0%;
-
-    }
-
-    .button {
-      display: inline-block;
-      padding: 12px 24px;
-      font-size: 18px;
-      background-color: #4CAF50;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-      margin: 10px;
-    }
-
-    .button:hover {
-      background-color: #45a049;
-    }
-
-    .container {
-      align-items: center;
-    }
-
-    .navbar {
-      background-color: #f8f8f8;
-      height: 70px;
-      padding: 0 20px;
-      margin-bottom: 100px;
-      display: flex;
-      align-items: center;
-
-    }
-
-    .title {
-      font-family: "Arial Black", sans-serif;
-      font-size: 28px;
-      margin: 435px;
-    }
-  </style>
+  <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
@@ -72,14 +19,30 @@
   </div>
 
   <div class="container" id="base">
-    <div>
-      <img class="logo Logo2" src="img/logo.png" alt="logo.jpeg">
+    <div class="button-container">
+      <div class="button-img" id="button-img">
+        <img src="/img/generar.png">
+      </div>
+      <a class="button" id="generar" href="pages/generar-orden.php"></a>
+      <div class="Text" id="button-text">Generar orden</div>
     </div>
-    <a class="button" href="pages/generar-orden.php">Generar Orden</a>
 
-    <a class="button" href="pages/ordenes.php">Ver Órdenes</a>
+    <div class="button-container">
+      <div class="button-img" id="button-img">
+        <img src="/img/customer.png">
+      </div>
+      <a class="button" id="ver" href="pages/ordenes.php"></a>
+      <div class="Text" id="button-text">Ordenes</div>
+    </div>
 
-    <a class="button" href="pages/formato.php">Modificar formato</a>
+    <div class="button-container">
+      <div class="button-img" id="button-img">
+        <img src="/img/edit-text.png">
+      </div>
+      <a class="button" id="modificar" href="pages/formato.php"></a>
+      <div class="Text" id="button-text">Editar formato</div>
+    </div>
+
   </div>
 
 </body>
