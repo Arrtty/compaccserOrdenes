@@ -2,14 +2,14 @@ body {
     background-color: #000000;
     margin: 0;
     font-family: Arial, sans-serif;
+    scrollbar-width: none;
 }
-
 .navbar {
     width: 100%;
     background-color: #f8f8f8;
-    position: relative;
+    position: sticky;
     height: 10vmin;
-    padding: 0 20px;
+    padding: 0;
     margin-bottom: 10px;
     display: inline-flex;
     align-items: center;
@@ -18,37 +18,32 @@ body {
 
 .logo.logo1 img {
     width: auto;
-    height: 60px;
+    height: 8vmin;
     display: inline-flex;
     background: 0%;
 }
 
 .title {
     font-family: "Arial Black", sans-serif;
-    font-size: 28px;
+    font-size: 3vmin;
+    justify-content: center;
 }
 
 .container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    position: relative;
     text-align: center;
     width: auto;
-    height: 84vmin;
+    height: 87vmin;
 }
 
 .button-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    text-align: center;
-    align-content: center;
-    justify-content: center;
-    text-decoration: none;
+    justify-content: space-evenly;
     width: 33%;
     height: 90%;
-    padding: 12px 24px;
-    border: none;
+    padding: 12px 10px;
     border-radius: 5px;
     margin: 10px;
 }
@@ -68,17 +63,17 @@ body {
 }
 
 img {
-    width: auto;
-    height: 300px;
+    width: 30%;
+    height: 30%;
 }
 
 #button-text {
-    font-size: 24px;
+    font-size: 4vmin;
     font-family: "Arial", sans-serif;
     color: #fff;
     position: absolute;
     top: 70%;
-    width: 100%;
+    width: auto;
     text-align: center;
 }
 
