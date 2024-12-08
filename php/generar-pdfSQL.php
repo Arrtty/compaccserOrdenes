@@ -190,7 +190,7 @@ $pdf->Cell(80, 10, 'Nombre y firma del cliente', 'T', 0, 'C');
 
 $pdf->Cell(20, 10, '', 0, 0);
 
-$pdf->Cell(80, 10, 'Estanislao Santiago Franciso', 'T', 1, 'C');
+$pdf->Cell(80, 10, $ingeniero, 'T', 1, 'C');
 
 $pdf->SetFont('times', '', 8);
 
