@@ -1,9 +1,9 @@
 body {
     background-color: #000000;
     margin: 0;
-    font-family: Arial, sans-serif;
     scrollbar-width: none;
 }
+
 .navbar {
     width: 100%;
     background-color: #f8f8f8;
@@ -13,7 +13,7 @@ body {
     margin-bottom: 10px;
     display: inline-flex;
     align-items: center;
-    justify-content: left;
+    justify-content: center;
 }
 
 .logo.logo1 img {
@@ -21,6 +21,10 @@ body {
     height: 8vmin;
     display: inline-flex;
     background: 0%;
+    position: absolute;
+    top: 8%;
+    left: 2%;
+
 }
 
 .title {
@@ -31,6 +35,7 @@ body {
 
 .container {
     display: flex;
+    justify-content: space-evenly;
     position: relative;
     text-align: center;
     width: auto;
@@ -40,7 +45,7 @@ body {
 .button-container {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     width: 33%;
     height: 90%;
     padding: 12px 10px;
@@ -64,7 +69,7 @@ body {
 
 img {
     width: 30%;
-    height: 30%;
+    height: auto;
 }
 
 #button-text {

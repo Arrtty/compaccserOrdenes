@@ -127,31 +127,33 @@ try {
       color: lightgray;
     }
 
-    .logo.logo1 img {
-      width: auto;
-      height: 60px;
-      display: inline-flex;
-    }
-
     .navbar {
-      background-color: #f8f8f8;
-      height: 70px;
-      padding: 0 20px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-    }
+    width: 100%;
+    background-color: #f8f8f8;
+    position: sticky;
+    height: 10vmin;
+    padding: 0;
+    margin-bottom: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
 
-    .title {
-      margin-left: 435px;
-      font-family: "Arial Black", sans-serif;
-      font-size: 28px;
-    }
+.logo.logo1 img {
+    width: auto;
+    height: 8vmin;
+    display: inline-flex;
+    background: 0%;
+    position: absolute;
+    top: 8%;
+    left: 2%;
+
+}
+.title {
+    font-family: "Arial Black", sans-serif;
+    font-size: 3vmin;
+    justify-content: center;
+}
   </style>
 </head>
 
