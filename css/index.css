@@ -73,7 +73,7 @@ img {
     height: auto;
 }
 
-#button-text {
+.button-text {
     font-size: 4vmin;
     font-family: "Arial", sans-serif;
     color: #fff;
