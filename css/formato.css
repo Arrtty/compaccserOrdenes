@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #f8f8f8;
+    background-color: #292929;
+}
+
+.formulario-container {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    height: auto;
+}
+
+.formulario {
+    font-family: Arial, sans-serif;
+    width: auto;
+    height: 100%;
+    margin: 0 auto;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    height: auto;
+    text-align: left;
+}
+
+.formulario.label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+
+textarea {
+    width: 100%;
+    height: 40vmin;
+    resize: none;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: steelblue;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    align-self: center;
+}
+
+.mensaje {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 500px;
+    word-wrap: break-word;
+    color: lightgray;
+}
+
+.navbar {
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vmin;
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-family: "Arial Black", sans-serif;
+    font-size: 3vmin;
+    color: black;
+    justify-content: center;
+}
+
+.logo.logo1 img {
+    width: auto;
+    height: 8vmin;
+    display: inline-flex;
+    background: 0%;
+    position: absolute;
+    top: 8%;
+    left: 2%;
+
+}

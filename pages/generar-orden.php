@@ -5,98 +5,10 @@
   <title>Formulario de Orden</title>
   <meta charset="utf-8">
   <link rel="icon" href="/img/logo.png">
-  <style>
-    body {
-      background-color: #292929;
-      padding-bottom: 20px;
-      margin: 0;
-    }
-
-    .formulario {
-      font-family: Arial, sans-serif;
-      max-width: 600px;
-      margin: 0 auto;
-      background-color: rgb(255, 255, 255);
-      border: 1px solid #ccc;
-      padding: 20px;
-      border-radius: 5px;
-      height: auto;
-    }
-
-    h2 {
-      text-align: center;
-    }
-
-    label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-
-    input[type="text"],
-    input[type="tel"],
-    textarea,
-    select {
-      width: 585px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      background-color: #ffffff;
-    }
-
-    textarea {
-      height: 100px;
-      width: 585px;
-      background-color: #ffffff;
-      resize: none;
-    }
-
-    .button-container {
-      text-align: center;
-      margin-top: 20px;
-      background-color: #ffffff;
-      padding-top: 20px;
-    }
-
-    .button-container button {
-      padding: 10px 20px;
-      background-color: steelblue;
-      color: #fff;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      font-size: 16px;
-
-    }
-
-    .navbar {
-      background-color: #f8f8f8;
-      height: 70px;
-      padding: 0 20px;
-      margin-bottom: 100px;
-      display: flex;
-      align-items: center;
-
-    }
-
-    .title {
-      margin-left: 435px;
-      font-family: "Arial Black", sans-serif;
-      font-size: 28px;
-    }
-
-    .logo.logo1 img {
-      width: auto;
-      height: 60px;
-      display: inline-flex;
-
-    }
-  </style>
+  <link rel="stylesheet" href="/css/generar-orden.css">
 </head>
 
 <body>
-
-
   <div class="navbar">
     <div class="logo logo1">
       <a href="/">
@@ -155,7 +67,7 @@
       <option value="Estanislao Santiago Francisco">
       <option value="Ingeniero 2">
       <option value="Ingeniero 3">
-        <!-- Puedes agregar más opciones de ingenieros aquí si lo deseas -->
+
     </datalist>
 
     <div class="button-container">
@@ -170,7 +82,7 @@
 <script>
 
   function autoExpand(textarea) {
-    // Ajustar el tamaño del área de texto para adaptarse al contenido
+
     textarea.style.height = 'auto';
     textarea.style.height = textarea.scrollHeight + 'px';
   }

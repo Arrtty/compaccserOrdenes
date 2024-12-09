@@ -49,112 +49,13 @@ try {
 ?>
 
 <!DOCTYPE html>
+<link rel="stylesheet" href="/css/formato.css">
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <title>Ingresar Pie de Página</title>
   <link rel="icon" href="/img/logo.png">
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      text-align: center;
-      background-color: #f8f8f8;
-      background-color: #292929;
-    }
-
-    .formulario-container {
-      display: flex;
-      width: 100%;
-
-      flex-direction: column;
-      align-items: center;
-      width: auto;
-    }
-
-    .formulario {
-      font-family: Arial, sans-serif;
-      width: 100%;
-      height: 100%;
-
-      margin: 0 auto;
-      background-color: rgb(255, 255, 255);
-      border: 1px solid #ccc;
-      padding: 20px;
-      border-radius: 5px;
-      height: auto;
-      text-align: left;
-    }
-
-    .formulario. label {
-      display: block;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-
-    textarea {
-      width: 100%;
-      /* Hacemos el textarea ocupar todo el ancho del formulario */
-      height: 400px;
-      resize: none;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: steelblue;
-      color: #fff;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      font-size: 16px;
-      align-self: center;
-    }
-
-    .mensaje {
-      text-align: center;
-      font-weight: bold;
-      margin-top: 20px;
-      border: 1px solid #ccc;
-      padding: 10px;
-      width: 500px;
-      word-wrap: break-word;
-      color: lightgray;
-    }
-
-    .navbar {
-    width: 100%;
-    background-color: #f8f8f8;
-    position: sticky;
-    height: 10vmin;
-    padding: 0;
-    margin-bottom: 10px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.logo.logo1 img {
-    width: auto;
-    height: 8vmin;
-    display: inline-flex;
-    background: 0%;
-    position: absolute;
-    top: 8%;
-    left: 2%;
-
-}
-.title {
-    font-family: "Arial Black", sans-serif;
-    font-size: 3vmin;
-    justify-content: center;
-}
-  </style>
 </head>
 
 <body>

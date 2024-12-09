@@ -1,193 +1,13 @@
 <!DOCTYPE html>
+<link rel='stylesheet' type='text/css' href='/css/ordenes.css' />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <html lang="es">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tabla de Datos</title>
   <link rel="icon" href="/img/logo.png">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    body {
-      background-color: #292929;
-      font-family: Arial, sans-serif;
-      color: white;
-      margin: 0;
-      padding: 0;
-      padding-top: 90px;
-      /* Añade espacio para la barra de navegación fija */
-    }
-
-    .download-btn {
-      padding: 6px 12px;
-      background-color: #4CAF50;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      word-wrap: break-word;
-    }
-
-    .edit-btn {
-      padding: 6px 12px;
-      background-color: #556BEE;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      word-wrap: break-word;
-    }
-
-    .delete-btn {
-      padding: 6px 12px;
-      background-color: #D33F3F;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      word-wrap: break-word;
-    }
-
-    .download-btn:hover {
-      background-color: #45a049;
-    }
-
-    .download-btn i {
-      margin-right: 8px;
-    }
-
-    .logo.logo1 img {
-      width: auto;
-      height: 60px;
-      display: inline-flex;
-    }
-
-    .navbar {
-      background-color: #f8f8f8;
-      height: 70px;
-      padding: 0 20px;
-      position: fixed;
-      /* Cambiado a fixed para que siempre esté visible */
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      /* Asegura el espacio entre los elementos */
-      box-sizing: border-box;
-      margin-bottom: 20px;
-    }
-
-    .navbar .title {
-      flex: 1;
-      /* Permite que el título ocupe el espacio disponible */
-      text-align: center;
-      /* Centra el título horizontalmente */
-    }
-
-    .navbar form {
-      flex: 0 0 auto;
-      /* Evita que el formulario se estire */
-      display: flex;
-      align-items: center;
-    }
-
-    .navbar form input[type="text"] {
-      padding: 5px;
-      font-size: 16px;
-    }
-
-    .navbar form input[type="submit"] {
-      padding: 5px 10px;
-      font-size: 16px;
-      margin-left: 5px;
-    }
-
-    .title {
-      margin-left: 435px;
-      font-family: "Arial Black", sans-serif;
-      font-size: 28px;
-      display: flex;
-      color: black;
-    }
-
-    form {
-      margin-left: auto;
-      margin-right: 40px;
-    }
-
-    .table-wrapper {
-      overflow-x: auto;
-      /* Añadido para permitir desplazamiento horizontal */
-      margin: 20px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 20px 0;
-      font-size: 18px;
-      text-align: left;
-      table-layout: fixed;
-      /* Añadido para que las columnas tengan un ancho fijo */
-    }
-
-    table th,
-    table td {
-      padding: 12px;
-      border: 1px solid #ddd;
-      word-wrap: break-word;
-      overflow: hidden;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      text-align: center;
-    }
-
-    table th {
-      background-color: #454545;
-      color: white;
-      text-align: center;
-    }
-
-    h1 {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    @media (max-width: 600px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        height: auto;
-      }
-
-      .navbar .title {
-        text-align: left;
-        margin: 10px 0;
-      }
-
-      table {
-        font-size: 14px;
-      }
-
-
-    }
-  </style>
 </head>
-
 <body>
   <div class="navbar">
     <div class="logo logo1">
@@ -201,8 +21,6 @@
       <input type="submit" value="Buscar">
     </form>
   </div>
-
-  <h1>Tabla de Datos</h1>
   <div class="table-wrapper">
     <table>
       <thead>
