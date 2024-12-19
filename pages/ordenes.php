@@ -110,12 +110,21 @@
 
                 // Si el usuario confirma, se abre la ventana
                 window.open(`/php/delete.php?id=${id}`, '_blank');
-                setTimeout(location.reload(),1000)
+                setTimeout(location.reload(),1000);
               }
             });
           });
         </script>
-
+        <script>
+          document.querySelectorAll('.edit-btn').forEach(boton => {
+            boton.addEventListener('click', (event) => {
+              event.preventDefault();
+              id = boton.getAttribute('data-id');
+                window.open(`/pages/editar.php?id=${id}`, '_blank');
+                setTimeout(location.reload(),1000);
+            });
+          });
+        </script>
 
       </tbody>
     </table>
