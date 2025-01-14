@@ -47,7 +47,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
+  /*
+    IMPORTANTE, AÑADIR LOS DEMAS CAMPOS A LA QUERY 
 
+    ADEMAS, AÑADIR LAS SECCIONES EN EL PDF SI HAY MAS DE UN EQUIPO
+  */
   // Obtén los datos del formulario
   $fecha = date('Y-m-d', strtotime($_POST['fecha']));
   $no_Orden = $_POST['no_orden'];
@@ -55,21 +59,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $contacto = $_POST['contacto'];
   $telefono = $_POST['telefono'];
   $celular = $_POST['celular'];
+  $ingeniero = $_POST['ingeniero'];
+  $accesorios = $_POST['accesorios'];
+
   $descripcion = $_POST['descripcion'];
   $tipo_equipo = $_POST['tipo_equipo'];
   $marca = $_POST['marca'];
   $modelo = $_POST['modelo'];
   $serie = $_POST['serie'];
-  $accesorios = $_POST['accesorios'];
-  $ingeniero = $_POST['ingeniero'];
 
+  $descripcion2 = $_POST['descripcion2'];
+  $tipo_equipo2 = $_POST['tipo_equipo2'];
+  $marca2 = $_POST['marca2'];
+  $modelo2 = $_POST['modelo2'];
+  $serie2 = $_POST['serie2'];
 
-
+  $descripcion3 = $_POST['descripcion3'];
+  $tipo_equipo3 = $_POST['tipo_equipo3'];
+  $marca3 = $_POST['marca3'];
+  $modelo3 = $_POST['modelo3'];
+  $serie3 = $_POST['serie3'];
 
   if (!$cliente) {
     $cliente = ' ';
   }
-
 
   if (!$contacto) {
     $contacto = ' ';
@@ -91,7 +104,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   try {
-
 
     $pdo->beginTransaction();
     $stmt = $pdo->prepare("INSERT INTO ordenes (fecha, cliente, telefono, celular, descripcion, equipo, marca, modelo, serie, accsesorios, ingeniero, contacto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
@@ -153,7 +165,7 @@ $pdf->Cell(100, 5, 'Cliente: ' . $cliente, 0, 0);
 $pdf->Cell(0, 5, 'Telefono: ' . $telefono, 0, 1, 'R');
 $pdf->Cell(0, 10, 'Celular: ' . $telefono, 0, 1, 'R');
 
-$pdf->MultiCell(180, 10, $descripcion, 0, 'L');
+$pdf->MultiCell(180, 10, $descripcion[0], 0, 'L');
 
 //...Altura de las celdas por la altura del texto que contengan
 $altTexto = 0;

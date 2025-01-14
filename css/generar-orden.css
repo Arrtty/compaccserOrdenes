@@ -25,6 +25,18 @@ label {
     font-weight: bold;
 }
 
+.device-section {
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+  }
+  
+  .device-section.visible {
+    visibility: visible;
+    height: auto;
+    overflow: visible;
+  }
+
 input[type="text"],
 input[type="tel"],
 textarea,
@@ -59,7 +71,6 @@ textarea {
     cursor: pointer;
     font-size: 16px;
 }
-
 .navbar {
     background-color: #f8f8f8;
     display: flex;

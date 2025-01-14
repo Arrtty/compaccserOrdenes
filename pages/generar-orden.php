@@ -62,9 +62,10 @@
         <textarea id="descripcion0" name="descripcion[]" rows="4" oninput="autoExpand(this)" required></textarea>
       </div>
     </div>
-
     <!-- Button to add another device -->
-    <button type="button" onclick="addDeviceSection()">Agregar otro dispositivo</button>
+    <div class="button-container">
+    <button type="button" id="addBtn" onclick="addDeviceSection()">Agregar otro dispositivo</button>
+    </div>
 
     <!-- Non-repeated fields -->
     <label for="accesorios">Accesorios Recibidos:</label>
@@ -89,11 +90,13 @@
   <script>
     let deviceCount = 1; // Start from 1 since we already have one device section
 
-    function addDeviceSection() {
-      if (deviceCount >= 3) {
-        alert('No se pueden agregar más de 3 dispositivos.');
-        return;
-      }
+    let clickCount = 1;
+
+function addDeviceSection() {
+  clickCount++;
+  if (clickCount >= 3) {
+    document.getElementById('addBtn').style.display = 'none';
+  }
 
       let container = document.getElementById('device-section-container');
       let newSection = document.createElement('div');

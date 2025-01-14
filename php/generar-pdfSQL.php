@@ -52,7 +52,6 @@ if ($conexion->connect_error) {
 // Asignar el valor de $id
 $id = $_GET['id'];
 
-
 $sql = "SELECT * FROM ordenes WHERE `no_Orden` =?";
 
 $stmt = $conexion->prepare($sql);
@@ -176,10 +175,10 @@ $pdf->MultiCell(45, $altTexto, $modelo, 1, 'C', 0, 0);
 $pdf->MultiCell(45, $altTexto, $serie, 1, 'C', 0, 1);
 
 $pdf->Ln(5); // Salto de línea para dejar espacio vacío
-
-$pdf->Cell(0, 10, 'Accesorios adicionales: ' . $accesorios, 0, 1);
+$pdf->Cell(0, 5, 'Accsesorios adicionales', 1, 1, 'C');
+$pdf->MultiCell(0, 10,  $accesorios, 0, 1);
 $pdf->Cell(180, 5, 'Observaciones en el procedimiento', 1, 1, 'C');
-$pdf->Ln(50); // Salto de línea para dejar espacio vacío
+$pdf->Ln(80); // Salto de línea para dejar espacio vacío
 
 // Agregar celda vacía para firma
 $pdf->Cell(0, 10, '', 0, 1);
@@ -194,7 +193,7 @@ $pdf->Cell(80, 10, $ingeniero, 'T', 1, 'C');
 
 $pdf->SetFont('times', '', 8);
 
-$pdf->Ln(20);
+$pdf->Ln(10);
 try {
   $stmt = $pdo->query("SELECT pieP FROM formato ORDER BY ver desc LIMIT 1");
   $ultimoPiePagina = $stmt->fetch(PDO::FETCH_ASSOC)['pieP'];
