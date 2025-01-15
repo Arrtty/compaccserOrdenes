@@ -4,6 +4,25 @@ body {
     margin: 0;
 }
 
+.title {
+    font-family: "Arial Black", sans-serif;
+    font-size: 3vmin;
+    color: black;
+    justify-content: center;
+}
+
+
+.logo.logo1 img {
+    width: auto;
+    height: 8vmin;
+    display: inline-flex;
+    background: 0%;
+    position: absolute;
+    top: 8%;
+    left: 2%;
+
+}
+
 .formulario {
     font-family: Arial, sans-serif;
     max-width: 600px;
@@ -24,18 +43,6 @@ label {
     margin-top: 10px;
     font-weight: bold;
 }
-
-.device-section {
-    visibility: hidden;
-    height: 0;
-    overflow: hidden;
-  }
-  
-  .device-section.visible {
-    visibility: visible;
-    height: auto;
-    overflow: visible;
-  }
 
 input[type="text"],
 input[type="tel"],
@@ -71,6 +78,7 @@ textarea {
     cursor: pointer;
     font-size: 16px;
 }
+
 .navbar {
     background-color: #f8f8f8;
     display: flex;
@@ -82,22 +90,4 @@ textarea {
     top: 0;
     left: 0;
     margin-bottom: 20px;
-}
-
-.title {
-    font-family: "Arial Black", sans-serif;
-    font-size: 3vmin;
-    color: black;
-    justify-content: center;
-}
-
-.logo.logo1 img {
-    width: auto;
-    height: 8vmin;
-    display: inline-flex;
-    background: 0%;
-    position: absolute;
-    top: 8%;
-    left: 2%;
-
 }

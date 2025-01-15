@@ -59,7 +59,6 @@ $stmt = $conexion->prepare($sql);
 // Vincular el valor de 'id' al parámetro
 $stmt->bind_param('i', $id);
 
-
 // Ejecutar la consulta
 $stmt->execute();
 
@@ -84,7 +83,6 @@ $serie = $datos['serie'];
 $accesorios = $datos['accsesorios'];
 $ingeniero = $datos['ingeniero'];
 
-
 if (!$fecha) {
   $fecha = date('d/m/Y');
 }
@@ -103,8 +101,6 @@ if (!$celular) {
 if (!$descripcion) {
   $descripcion = 'NO SE ESCRIBIO DESCRIPCION DEL ERROR';
 }
-
-
 
 // Crear una instancia de TCPDF
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);

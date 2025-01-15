@@ -2,7 +2,7 @@
 
 //use const Users\Arturo\Desktop\InteliJ\compaccserOrdenes\tc;
 
-require_once ('../TCPDF-main/tcpdf.php');
+require_once('../TCPDF-main/tcpdf.php');
 
 class MYPDF extends TCPDF
 {
@@ -54,55 +54,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   */
   // Obtén los datos del formulario
   $fecha = date('Y-m-d', strtotime($_POST['fecha']));
-  $no_Orden = $_POST['no_orden'];
-  $cliente = $_POST['cliente'];
-  $contacto = $_POST['contacto'];
-  $telefono = $_POST['telefono'];
-  $celular = $_POST['celular'];
-  $ingeniero = $_POST['ingeniero'];
-  $accesorios = $_POST['accesorios'];
+  $no_Orden = !empty($_POST['no_orden']) ? $_POST['no_orden'] : 00000;
+  $cliente = !empty($_POST['cliente']) ? $_POST['cliente'] : "";
+  $contacto = !empty($_POST['contacto']) ? $_POST['contacto'] : "";
+  $telefono = !empty($_POST['telefono']) ? $_POST['telefono'] : "";
+  $celular = !empty($_POST['celular']) ? $_POST['celular'] : "";
+  $ingeniero = !empty($_POST['ingeniero']) ? $_POST['ingeniero'] : "";
+  $accesorios = !empty($_POST['accesorios']) ? $_POST['accesorios'] : "";
 
-  $descripcion = $_POST['descripcion'];
-  $tipo_equipo = $_POST['tipo_equipo'];
-  $marca = $_POST['marca'];
-  $modelo = $_POST['modelo'];
-  $serie = $_POST['serie'];
+  // Validar y asignar "" si no hay informacion en la sección 1
+  $descripcion = !empty($_POST['descripcion']) ? $_POST['descripcion'] : "";
+  $tipo_equipo = !empty($_POST['tipo_equipo']) ? $_POST['tipo_equipo'] : "";
+  $marca = !empty($_POST['marca']) ? $_POST['marca'] : "";
+  $modelo = !empty($_POST['modelo']) ? $_POST['modelo'] : ""; 
+  $serie = !empty($_POST['serie']) ? $_POST['serie'] : "";  
 
-  $descripcion2 = $_POST['descripcion2'];
-  $tipo_equipo2 = $_POST['tipo_equipo2'];
-  $marca2 = $_POST['marca2'];
-  $modelo2 = $_POST['modelo2'];
-  $serie2 = $_POST['serie2'];
+  // Validar y asignar "" si no hay informacion en la sección 2
+  $descripcion2 = !empty($_POST['descripcion2']) ? $_POST['descripcion2'] : "";
+  $tipo_equipo2 = !empty($_POST['tipo_equipo2']) ? $_POST['tipo_equipo2'] : "";
+  $marca2 = !empty($_POST['marca2']) ? $_POST['marca2'] : "";
+  $modelo2 = !empty($_POST['modelo2']) ? $_POST['modelo2'] : "";
+  $serie2 = !empty($_POST['serie2']) ? $_POST['serie2'] : "";
 
-  $descripcion3 = $_POST['descripcion3'];
-  $tipo_equipo3 = $_POST['tipo_equipo3'];
-  $marca3 = $_POST['marca3'];
-  $modelo3 = $_POST['modelo3'];
-  $serie3 = $_POST['serie3'];
-
-  if (!$cliente) {
-    $cliente = ' ';
-  }
-
-  if (!$contacto) {
-    $contacto = ' ';
-  }
-  if (!$telefono) {
-    $telefono = 'S/N';
-  }
-
-  if (!$celular) {
-    $celular = 'S/N';
-  }
-
-  if (!$descripcion) {
-    $descripcion = 'NO SE ESCRIBIO DESCRIPCION DEL ERROR';
-  }
-
-  if (!$contacto) {
-    $contacto = ' ';
-  }
-
+  // Validar y asignar "" si no hay informacion en la seccion 3
+  $descripcion3 = !empty($_POST['descripcion3']) ? $_POST['descripcion3'] : "";
+  $tipo_equipo3 = !empty($_POST['tipo_equipo3']) ? $_POST['tipo_equipo3'] : "";
+  $marca3 = !empty($_POST['marca3']) ? $_POST['marca3'] : "";
+  $modelo3 = !empty($_POST['modelo3']) ? $_POST['modelo3'] : "";
+  $serie3 = !empty($_POST['serie3']) ? $_POST['serie3'] : "";
   try {
 
     $pdo->beginTransaction();
