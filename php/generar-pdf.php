@@ -1,7 +1,5 @@
 <?php
 
-//use const Users\Arturo\Desktop\InteliJ\compaccserOrdenes\tc;
-
 require_once('../TCPDF-main/tcpdf.php');
 
 class MYPDF extends TCPDF
@@ -31,29 +29,7 @@ class MYPDF extends TCPDF
   }
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // Establecer conexión a la base de datos (usando PDO)
-  $host = 'localhost';
-  $dbName = 'compaccser';
-  $username = 'root';
-  $password = '';
-
-  try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbName", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  } catch (PDOException $e) {
-    die("Error de conexión a la base de datos: " . $e->getMessage());
-  }
-
-
-
-  /*
-    IMPORTANTE, AÑADIR LOS DEMAS CAMPOS A LA QUERY 
-
-    ADEMAS, AÑADIR LAS SECCIONES EN EL PDF SI HAY MAS DE UN EQUIPO
-  */
-  // Obtén los datos del formulario
-  $fecha = date('Y-m-d', strtotime($_POST['fecha']));
+$fecha = date('Y-m-d', strtotime($_POST['fecha']));
   $no_Orden = !empty($_POST['no_orden']) ? $_POST['no_orden'] : 00000;
   $cliente = !empty($_POST['cliente']) ? $_POST['cliente'] : "";
   $contacto = !empty($_POST['contacto']) ? $_POST['contacto'] : "";
@@ -66,8 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $descripcion = !empty($_POST['descripcion']) ? $_POST['descripcion'] : "";
   $tipo_equipo = !empty($_POST['tipo_equipo']) ? $_POST['tipo_equipo'] : "";
   $marca = !empty($_POST['marca']) ? $_POST['marca'] : "";
-  $modelo = !empty($_POST['modelo']) ? $_POST['modelo'] : ""; 
-  $serie = !empty($_POST['serie']) ? $_POST['serie'] : "";  
+  $modelo = !empty($_POST['modelo']) ? $_POST['modelo'] : "";
+  $serie = !empty($_POST['serie']) ? $_POST['serie'] : "";
 
   // Validar y asignar "" si no hay informacion en la sección 2
   $descripcion2 = !empty($_POST['descripcion2']) ? $_POST['descripcion2'] : "";
@@ -82,11 +58,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $marca3 = !empty($_POST['marca3']) ? $_POST['marca3'] : "";
   $modelo3 = !empty($_POST['modelo3']) ? $_POST['modelo3'] : "";
   $serie3 = !empty($_POST['serie3']) ? $_POST['serie3'] : "";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Establecer conexión a la base de datos (usando PDO)
+  $host = 'localhost';
+  $dbName = 'compaccser';
+  $username = 'root';
+  $password = '';
+
+  try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbName", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  } catch (PDOException $e) {
+    die("Error de conexión a la base de datos: " . $e->getMessage());
+  }
+
+  /*
+    IMPORTANTE, AÑADIR LOS DEMAS CAMPOS A LA QUERY 
+
+    ADEMAS, AÑADIR LAS SECCIONES EN EL PDF SI HAY MAS DE UN EQUIPO
+  */
+  // Obtén los datos del formulario
+  
   try {
 
     $pdo->beginTransaction();
-    $stmt = $pdo->prepare("INSERT INTO ordenes (fecha, cliente, telefono, celular, descripcion, equipo, marca, modelo, serie, accsesorios, ingeniero, contacto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
-    $stmt->execute([$fecha, $cliente, $telefono, $celular, $descripcion, $tipo_equipo, $marca, $modelo, $serie, $accesorios, $ingeniero, $contacto]);
+    $stmt = $pdo->prepare("INSERT INTO ordenes 
+    (fecha, cliente, telefono, celular, descripcion, equipo, marca, modelo, serie, accsesorios, ingeniero, contacto,
+     descripcion2, marca2, equipo2, modelo2, serie2,
+    descripcion3, marca3, equipo3, modelo3, serie3) 
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([
+      $fecha,
+      $cliente,
+      $telefono,
+      $celular,
+      $descripcion,
+      $tipo_equipo,
+      $marca,
+      $modelo,
+      $serie,
+      $accesorios,
+      $ingeniero,
+      $contacto,
+      $descripcion2,
+      $marca2,
+      $tipo_equipo2,
+      $modelo2,
+      $serie2,
+      $descripcion3,
+      $marca3,
+      $tipo_equipo3,
+      $modelo3,
+      $serie3
+    ]);
     $pdo->commit();
 
     // Redirigir a otra página después de guardar el registro
@@ -96,20 +120,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     die("Error al guardar el registro: " . $e->getMessage());
   }
 }
-$fecha = $_POST['fecha'];
-$no_Orden = $_POST['no_orden'];
-$cliente = $_POST['cliente'];
-
-$contacto = $_POST['contacto'];
-$telefono = $_POST['telefono'];
-$celular = $_POST['celular'];
-$descripcion = $_POST['descripcion'];
-$tipo_equipo = $_POST['tipo_equipo'];
-$marca = $_POST['marca'];
-$modelo = $_POST['modelo'];
-$serie = $_POST['serie'];
-$accesorios = $_POST['accesorios'];
-$ingeniero = $_POST['ingeniero'];
 
 $fecha = date('d/m/Y');
 // Crear una instancia de TCPDF
@@ -130,7 +140,6 @@ $pdf->SetKeywords('PDF, Orden de servicio');
 $pdf->setMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP);
 $pdf->setHeaderMargin(PDF_MARGIN_HEADER);
 
-
 // Agregar una página
 $pdf->AddPage();
 
@@ -143,9 +152,6 @@ $pdf->SetTextColor(0, 0, 0);
 $pdf->Cell(100, 5, 'Cliente: ' . $cliente, 0, 0);
 $pdf->Cell(0, 5, 'Telefono: ' . $telefono, 0, 1, 'R');
 $pdf->Cell(0, 10, 'Celular: ' . $telefono, 0, 1, 'R');
-
-$pdf->MultiCell(180, 10, $descripcion[0], 0, 'L');
-
 //...Altura de las celdas por la altura del texto que contengan
 $altTexto = 0;
 
@@ -178,11 +184,35 @@ $pdf->MultiCell(45, $altTexto, $marca, 1, 'C', 0, 0);
 $pdf->MultiCell(45, $altTexto, $modelo, 1, 'C', 0, 0);
 $pdf->MultiCell(45, $altTexto, $serie, 1, 'C', 0, 1);
 
-$pdf->Ln(5); // Salto de línea para dejar espacio vacío
+$pdf->Cell(0, 5, 'Descripcion de la falla', 1, 1, 'C');
+$pdf->MultiCell(180, 10, $descripcion, 0, 1);
 
-$pdf->Cell(0, 10, 'Accesorios adicionales: ' . $accesorios, 0, 1);
+if($marca2 != null && $modelo2 != null && $serie2 != null && $tipo_equipo2 != null && $descripcion2 != null){
+  $pdf->Cell(0, 10, 'Equipos', 1, 1, 'C');
+  $pdf->MultiCell(45, $altTexto, $tipo_equipo2, 1, 'C', 0, 0);
+  $pdf->MultiCell(45, $altTexto, $marca2, 1, 'C', 0, 0);
+  $pdf->MultiCell(45, $altTexto, $modelo2, 1, 'C', 0, 0);
+  $pdf->MultiCell(45, $altTexto, $serie2, 1, 'C', 0, 1);
+  
+  $pdf->Cell(0, 5, 'Descripcion de la falla', 1, 1, 'C');
+  $pdf->MultiCell(180, 10, $descripcion2, 0, 1);
+}
+
+if($marca3 != null && $modelo3 != null && $serie3 != null && $tipo_equipo3 != null && $descripcion3 != null){
+  $pdf->Cell(0, 10, 'Equipos', 1, 1, 'C');
+  $pdf->MultiCell(45, $altTexto, $tipo_equipo3, 1, 'C', 0, 0);
+  $pdf->MultiCell(45, $altTexto, $marca3, 1, 'C', 0, 0);
+  $pdf->MultiCell(45, $altTexto, $modelo3, 1, 'C', 0, 0);
+  $pdf->MultiCell(45, $altTexto, $serie3, 1, 'C', 0, 1);
+  
+  $pdf->Cell(0, 5, 'Descripcion de la falla', 1, 1, 'C');
+  $pdf->MultiCell(180, 10, $descripcion3, 0, 1);
+}
+
+$pdf->Cell(0, 5, 'Accsesorios adicionales', 1, 1, 'C');
+$pdf->MultiCell(0, 10,  $accesorios, 0, 1);
 $pdf->Cell(180, 5, 'Observaciones en el procedimiento', 1, 1, 'C');
-$pdf->Ln(50); // Salto de línea para dejar espacio vacío
+$pdf->Ln(30); // Salto de línea para dejar espacio vacío
 
 // Agregar celda vacía para firma
 $pdf->Cell(0, 10, '', 0, 1);
