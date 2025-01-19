@@ -18,12 +18,9 @@
     <div class="title">Generar órden</div>
   </div>
 
-  <form target="_blank" class="formulario" method="POST" action="/php/generar-pdf.php"
-    onsubmit="return validarFormulario()">
+  <form target="_blank" class="formulario" method="POST" action="/php/generar-pdf.php" onsubmit="return validarFormulario()">
 
     <h2>Formulario de Orden</h2>
-
-    <!-- Other form fields -->
     <label for="fecha">Fecha:</label>
     <input type="date" id="fecha" name="fecha" value="<?php echo date('Y-m-d'); ?>" />
 
@@ -48,19 +45,19 @@
         <h3>Dispositivo 1</h3>
 
         <label for="tipo_equipo">Tipo de Equipo:</label>
-        <input type="text" id="tipo_equipo0" name="tipo_equipo" required>
+        <input type="text" id="tipo_equipo0" name="tipo_equipo">
 
         <label for="marca">Marca:</label>
-        <input type="text" id="marca0" name="marca" required>
+        <input type="text" id="marca0" name="marca">
 
         <label for="modelo">Modelo:</label>
-        <input type="text" id="modelo0" name="modelo" required>
+        <input type="text" id="modelo0" name="modelo">
 
         <label for="serie">Serie:</label>
-        <input type="text" id="serie0" name="serie" required>
+        <input type="text" id="serie0" name="serie">
 
         <label for="descripcion">Descripción de la Falla:</label>
-        <textarea id="descripcion" name="descripcion" rows="4" oninput="autoExpand(this)" required></textarea>
+        <textarea id="descripcion" name="descripcion" rows="4" oninput="autoExpand(this)"></textarea>
       </div>
       <!-- ---------------------------------------------------------------- -->
       <div class="device-section" id="section2" style="display: none;">
@@ -103,22 +100,21 @@
     </div>
 
 
-    <!-- Button to add another device -->
+    <!-- Add more devices -->
     <div class="button-container">
       <button type="button" id="addBtn" onclick="addDeviceSection()">Agregar otro dispositivo</button>
     </div>
 
     <!-- Non-repeated fields -->
     <label for="accesorios">Accesorios Recibidos:</label>
-    <textarea id="accesorios" name="accesorios" rows="4" oninput="autoExpand(this)"
-      onblur="convertToList(this)"></textarea>
+    <textarea id="accesorios" name="accesorios" rows="4" oninput="autoExpand(this)"></textarea>
 
     <label for="ingeniero">Ingeniero de Soporte:</label>
-    <input type="text" id="ingeniero" name="ingeniero" list="lista_ingenieros" required>
+    <input type="text" id="ingeniero" name="ingeniero" list="lista_ingenieros">
     <datalist id="lista_ingenieros">
       <option value="Estanislao Santiago Francisco">
-      <option value="Ingeniero 2">
-      <option value="Ingeniero 3">
+      <option value="Diana Laura Contreras V.">
+      <option value="Rocío Gpe. López Navarro">
     </datalist>
 
     <div class="button-container">
@@ -128,50 +124,19 @@
 </body>
 
 </html>
-
-<!-- Add section script -->
 <script>
+
   let clickCount = 1;
 
   function addDeviceSection() {
     clickCount++;
     let sectioncount = "section" + clickCount;
-    console.log(sectioncount);
     document.getElementById(sectioncount).style.display = 'block';
     if (clickCount >= 3) {
       document.getElementById('addBtn').style.display = 'none';
 
     }
-    /*
-          let container = document.getElementById('device-section-container');
-          let newSection = document.createElement('div');
-          newSection.className = 'device-section';
-          newSection.innerHTML = `
-            <h3>Dispositivo ${deviceCount + 1}</h3>
-    
-            <label for="tipo_equipo${deviceCount}">Tipo de Equipo:</label>
-            <input type="text" id="tipo_equipo${deviceCount}" name="tipo_equipo" required>
-    
-            <label for="marca${deviceCount}">Marca:</label>
-            <input type="text" id="marca${deviceCount}" name="marca" required>
-    
-            <label for="modelo${deviceCount}">Modelo:</label>
-            <input type="text" id="modelo${deviceCount}" name="modelo" required>
-    
-            <label for="serie${deviceCount}">Serie:</label>
-            <input type="text" id="serie${deviceCount}" name="serie" required>
-    
-            <label for="descripcion${deviceCount}">Descripción de la Falla:</label>
-            <textarea id="descripcion${deviceCount}" name="descripcion" rows="4" oninput="autoExpand(this)" required></textarea>
-          `;
-          container.appendChild(newSection);
-          */
-    deviceCount++;
   }
-
-</script>
-<script>
-
   // Text area auto expand
   function autoExpand(textarea) {
 
@@ -180,41 +145,32 @@
   }
 
   function validarFormulario() {
-    var noOrden = document.getElementById('no-orden').value;
-    var cliente = document.getElementById('cliente').value;
-    var contacto = document.getElementById('contacto').value;
-    var telefono = document.getElementById('telefono').value;
-    var celular = document.getElementById('celular').value;
-    var descripcion = document.getElementById('descripcion').value;
-    var tipoEquipo = document.getElementById('tipo_equipo').value;
-    var marca = document.getElementById('marca').value;
-    var modelo = document.getElementById('modelo').value;
-    var serie = document.getElementById('serie').value;
-    var accesorios = document.getElementById('accesorios').value;
-    var ingeniero = document.getElementById('ingeniero').value;
+    const fields = [
+        { id: 'fecha', message: 'Por favor, seleccione una fecha.' },
+        { id: 'contacto', message: 'Por favor, complete el contacto.' },
+        { id: 'cliente', message: 'Por favor, complete el nombre del cliente.' },
+        { id: 'telefono', message: 'Por favor, complete el teléfono del cliente.' },
+        { id: 'celular', message: 'Por favor, complete el celular del cliente.' },
+        { id: 'tipo_equipo0', message: 'Por favor, complete el tipo de equipo del dispositivo 1.' },
+        { id: 'marca0', message: 'Por favor, complete la marca del dispositivo 1.' },
+        { id: 'modelo0', message: 'Por favor, complete el modelo del dispositivo 1.' },
+        { id: 'serie0', message: 'Por favor, complete la serie del dispositivo 1.' },
+        { id: 'descripcion', message: 'Por favor, complete la descripción de la falla del dispositivo 1.' }
+    ];
 
-    // Verificar si algún campo requerido está vacío
-    if (
-      noOrden === '' ||
-      cliente === '' ||
-      celular === '' ||
-      descripcion === '' ||
-      tipoEquipo === '' ||
-      marca === '' ||
-      modelo === '' ||
-      serie === '' ||
-      accesorios === '' ||
-      ingeniero === ''
-    ) {
-      alert('Por favor, completa todos los campos obligatorios.');
-      return false; // Detener el envío del formulario
-    } else {
-      window.location.href = '/pages/ordenes.php';
-      return true; // Permitir el envío del formulario
+    for (let field of fields) {
+        let element = document.getElementById(field.id);
+        if (!element || element.value.trim() === '') {
+            alert(field.message);
+            return false;
+        }
     }
-  }
-
-
+    setTimeout(() => {
+        location.href = "/pages/ordenes.php";
+        
+    }, 2000);
+    return true;
+}
 
 </script>
 <?php

@@ -73,6 +73,7 @@ $datos = $resultado->fetch_assoc();
 $fecha = $datos['fecha'];
 $no_Orden = $datos['no_Orden'];
 $cliente = $datos['cliente'];
+$contacto = $datos['contacto'];
 $telefono = $datos['telefono'];
 $celular = $datos['celular'];
 $accesorios = $datos['accsesorios'];
@@ -146,6 +147,7 @@ $pdf->Cell(0, 5, 'Orden No. ' . $no_Orden, 0, 1, 'R');
 $pdf->SetTextColor(0, 0, 0);
 $pdf->Cell(100, 5, 'Cliente: ' . $cliente, 0, 0);
 $pdf->Cell(0, 5, 'Telefono: ' . $telefono, 0, 1, 'R');
+$pdf->Cell(100, 5, 'Contacto: ' . $contacto, 0, 0);
 $pdf->Cell(0, 10, 'Celular: ' . $telefono, 0, 1, 'R');
 
 //...Altura de las celdas por la altura del texto que contengan
