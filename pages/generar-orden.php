@@ -20,9 +20,9 @@
 
   <form target="_blank" class="formulario" method="POST" action="/php/generar-pdf.php"
     onsubmit="return validarFormulario()">
+    <input type="hidden" name="action" value="insert">
 
     <h2>Formulario de Orden</h2>
-
     <label for="fecha">Fecha:</label>
     <input type="date" id="fecha" name="fecha" value="<?php echo date('Y-m-d'); ?>" />
 
@@ -30,44 +30,93 @@
     <input type="text" id="no-orden" name="no_orden" readonly>
 
     <label for="contacto">Contacto:</label>
-    <input type="text" id="contacto" name="contacto">
+    <input type="text" id="contacto" name="contacto" maxlength="245">
 
     <label for="cliente">Cliente:</label>
-    <input type="text" id="cliente" name="cliente">
+    <input type="text" id="cliente" name="cliente" maxlength="245">
 
     <label for="telefono">Teléfono:</label>
-    <input type="number" id="telefono" name="telefono">
+    <input type="number" id="telefono" name="telefono" maxlength="245">
 
     <label for="celular">Celular:</label>
-    <input type="number" id="celular" name="celular">
+    <input type="number" id="celular" name="celular" maxlength="245">
 
-    <label for="descripcion">Descripción de la Falla:</label>
-    <textarea id="descripcion" name="descripcion" rows="4" oninput="autoExpand(this)"></textarea>
+    <!-- Container for device sections -->
+    <div id="device-section-container">
+      <div class="device-section">
+        <h3>Dispositivo 1</h3>
 
-    <label for="tipo_equipo">Tipo de Equipo:</label>
-    <input type="text" id="tipo_equipo" name="tipo_equipo">
+        <label for="tipo_equipo">Tipo de Equipo:</label>
+        <input type="text" id="tipo_equipo0" name="tipo_equipo" maxlength="245">
 
-    <label for="marca">Marca:</label>
-    <input type="text" id="marca" name="marca">
+        <label for="marca">Marca:</label>
+        <input type="text" id="marca0" name="marca" maxlength="245">
 
-    <label for="modelo">Modelo:</label>
-    <input type="text" id="modelo" name="modelo">
+        <label for="modelo">Modelo:</label>
+        <input type="text" id="modelo0" name="modelo" maxlength="245">
 
-    <label for="serie">Serie:</label>
-    <input type="text" id="serie" name="serie">
+        <label for="serie">Serie:</label>
+        <input type="text" id="serie0" name="serie" maxlength="245">
 
+        <label for="descripcion">Descripción de la Falla:</label>
+        <textarea id="descripcion" name="descripcion" rows="4" oninput="autoExpand(this)" maxlength="245"></textarea>
+      </div>
+      <!-- ---------------------------------------------------------------- -->
+      <div class="device-section" id="section2" style="display: none;">
+        <h3>Dispositivo 2</h3>
+
+        <label for="tipo_equipo">Tipo de Equipo:</label>
+        <input type="text" id="tipo_equipo2" name="tipo_equipo2" maxlength="245">
+
+        <label for="marca">Marca:</label>
+        <input type="text" id="marca2" name="marca2" maxlength="245">
+
+        <label for="modelo">Modelo:</label>
+        <input type="text" id="modelo2" name="modelo2" maxlength="245">
+
+        <label for="serie">Serie:</label>
+        <input type="text" id="serie2" name="serie2" maxlength="245">
+
+        <label for="descripcion">Descripción de la Falla:</label>
+        <textarea id="descripcion2" name="descripcion2" rows="4" oninput="autoExpand(this)" maxlength="245"></textarea>
+      </div>
+      <!-- ---------------------------------------------------------------- -->
+      <div class="device-section" id="section3" style="display: none;">
+        <h3>Dispositivo 3</h3>
+
+        <label for="tipo_equipo">Tipo de Equipo:</label>
+        <input type="text" id="tipo_equipo3" name="tipo_equipo3" maxlength="245">
+
+        <label for="marca">Marca:</label>
+        <input type="text" id="marca3" name="marca3" maxlength="245">
+
+        <label for="modelo">Modelo:</label>
+        <input type="text" id="modelo3" name="modelo3" maxlength="245">
+
+        <label for="serie">Serie:</label>
+        <input type="text" id="serie3" name="serie3" maxlength="245">
+
+        <label for="descripcion">Descripción de la Falla:</label>
+        <textarea id="descripcion3" name="descripcion3" rows="4" oninput="autoExpand(this)" maxlength="245"></textarea>
+      </div>
+    </div>
+
+
+    <!-- Add more devices -->
+    <div class="button-container">
+      <button type="button" id="addBtn" onclick="addDeviceSection()">Agregar otro dispositivo</button>
+    </div>
+
+    <!-- Non-repeated fields -->
     <label for="accesorios">Accesorios Recibidos:</label>
-    <textarea id="accesorios" name="accesorios" rows="4" oninput="autoExpand(this)"
-      onblur="convertToList(this)"></textarea>
-
+    <textarea id="accesorios" name="accesorios" rows="4" oninput="autoExpand(this)" maxlength="245"></textarea>
 
     <label for="ingeniero">Ingeniero de Soporte:</label>
     <input type="text" id="ingeniero" name="ingeniero" list="lista_ingenieros">
     <datalist id="lista_ingenieros">
       <option value="Estanislao Santiago Francisco">
-      <option value="Ingeniero 2">
-      <option value="Ingeniero 3">
-
+      <option value="Diana Laura Contreras V.">
+      <option value="Rocío Gpe. López Navarro">
     </datalist>
 
     <div class="button-container">
@@ -77,10 +126,20 @@
 </body>
 
 </html>
-
-
 <script>
 
+  let clickCount = 1;
+
+  function addDeviceSection() {
+    clickCount++;
+    let sectioncount = "section" + clickCount;
+    document.getElementById(sectioncount).style.display = 'block';
+    if (clickCount >= 3) {
+      document.getElementById('addBtn').style.display = 'none';
+
+    }
+  }
+  // Text area auto expand
   function autoExpand(textarea) {
 
     textarea.style.height = 'auto';
@@ -88,46 +147,32 @@
   }
 
   function validarFormulario() {
-    var noOrden = document.getElementById('no-orden').value;
-    var cliente = document.getElementById('cliente').value;
-    var contacto = document.getElementById('contacto').value;
-    var telefono = document.getElementById('telefono').value;
-    var celular = document.getElementById('celular').value;
-    var descripcion = document.getElementById('descripcion').value;
-    var tipoEquipo = document.getElementById('tipo_equipo').value;
-    var marca = document.getElementById('marca').value;
-    var modelo = document.getElementById('modelo').value;
-    var serie = document.getElementById('serie').value;
-    var accesorios = document.getElementById('accesorios').value;
-    var ingeniero = document.getElementById('ingeniero').value;
+    const fields = [
+      { id: 'fecha', message: 'Por favor, seleccione una fecha.' },
+      { id: 'contacto', message: 'Por favor, complete el contacto.' },
+      { id: 'cliente', message: 'Por favor, complete el nombre del cliente.' },
+      { id: 'telefono', message: 'Por favor, complete el teléfono del cliente.' },
+      { id: 'celular', message: 'Por favor, complete el celular del cliente.' },
+      { id: 'tipo_equipo0', message: 'Por favor, complete el tipo de equipo del dispositivo 1.' },
+      { id: 'marca0', message: 'Por favor, complete la marca del dispositivo 1.' },
+      { id: 'modelo0', message: 'Por favor, complete el modelo del dispositivo 1.' },
+      { id: 'serie0', message: 'Por favor, complete la serie del dispositivo 1.' },
+      { id: 'descripcion', message: 'Por favor, complete la descripción de la falla del dispositivo 1.' }
+    ];
 
-    // Verificar si algún campo requerido está vacío
-    if (
-      noOrden === '' ||
-      cliente === '' ||
-      celular === '' ||
-      descripcion === '' ||
-      tipoEquipo === '' ||
-      marca === '' ||
-      modelo === '' ||
-      serie === '' ||
-      accesorios === '' ||
-      ingeniero === ''
-    ) {
-      alert('Por favor, completa todos los campos obligatorios.');
-      return false; // Detener el envío del formulario
-    } else {
-      window.location.href = '/pages/ordenes.php';
-      return true; // Permitir el envío del formulario
+    for (let field of fields) {
+      let element = document.getElementById(field.id);
+      if (!element || element.value.trim() === '') {
+        alert(field.message);
+        return false;
+      }
     }
-  }
+    setTimeout(() => {
+      location.href = "/pages/ordenes.php";
 
-  function autoExpand(textarea) {
-    // Ajustar el tamaño del área de texto para adaptarse al contenido
-    textarea.style.height = 'auto';
-    textarea.style.height = textarea.scrollHeight + 'px';
+    }, 2000);
+    return true;
   }
-
 
 </script>
 <?php

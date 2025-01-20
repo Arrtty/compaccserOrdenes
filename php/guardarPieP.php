@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     die("Error: Debes ingresar el pie de página.");
   }
 
-  // Establecer conexión a la base de datos (usando PDO)
+  // Establecer conexión a la base de datos
   $host = 'localhost';
   $dbName = 'compaccser';
   $username = 'root';

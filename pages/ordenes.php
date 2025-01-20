@@ -2,12 +2,14 @@
 <link rel='stylesheet' type='text/css' href='/css/ordenes.css' />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <html lang="es">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tabla de Datos</title>
   <link rel="icon" href="/img/logo.png">
 </head>
+
 <body>
   <div class="navbar">
     <div class="logo logo1">
@@ -39,7 +41,6 @@
         // Conectar a la base de datos
         $conexion = mysqli_connect('localhost', 'root', '', 'compaccser', 3306, '');
 
-        // Verificar la conexión
         if (!$conexion) {
           die('Error de conexión a la base de datos: ');
         }
@@ -49,7 +50,6 @@
         if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
           $buscar = $_GET['buscar'];
 
-          // Construir la consulta SQL con la cláusula WHERE para filtrar los registros
           $consulta = "SELECT * FROM ordenes
                          WHERE no_Orden LIKE '%$buscar%'
                          OR fecha LIKE '%$buscar%'
@@ -59,7 +59,6 @@
                          OR descripcion LIKE '%$buscar%'
                          ORDER BY no_Orden DESC";
         } else {
-          // Consulta sin filtro si no se ingresó un término de búsqueda
           $consulta = "SELECT * FROM ordenes ORDER BY no_Orden DESC";
         }
 
@@ -88,7 +87,7 @@
           echo '<td>
           <a class="download-btn" href="/php/generar-pdfSQL.php?id=' . $fila['no_Orden'] . '"><i class="fas fa-file-download"></i></a>
           <a class="edit-btn" href="#" data-id="' . $fila['no_Orden'] . '"><i class="fas fa-edit"></i></a>
-          <a class="delete-btn" href="generar-pdfSQL.php?id=' . $fila['no_Orden'] . '"><i class="fas fa-trash"></i></a></td>';
+          <a class="delete-btn" href="#" data-id="' . $fila['no_Orden'] . '"><i class="fas fa-trash"></i></a></td>';
           echo '</tr>';
 
 
@@ -99,14 +98,30 @@
         mysqli_close($conexion);
         ?>
         <script>
-          document.querySelectorAll('.edit-btn').forEach(button => {
+          document.querySelectorAll('.delete-btn').forEach(button => {
             button.addEventListener('click', (event) => {
               event.preventDefault();
-              const id = button.getAttribute('data-id');
-              // Abrir en una nueva pestaña
-              window.open(`/pages/editar.php?id=${id}`, '_blank');
-              // Recargar la página actual
-              location.reload();
+
+              // Mostrar el cuadro de confirmación
+              const confirmDelete = window.confirm('¿Estás seguro de que quieres eliminar la orden '+ button.getAttribute('data-id') + '?');
+
+              if (confirmDelete) {
+                const id = button.getAttribute('data-id');
+
+                // Si el usuario confirma, se abre la ventana
+                window.open(`/php/delete.php?id=${id}`, '_blank');
+                setTimeout(location.reload(),1000);
+              }
+            });
+          });
+        </script>
+        <script>
+          document.querySelectorAll('.edit-btn').forEach(boton => {
+            boton.addEventListener('click', (event) => {
+              event.preventDefault();
+              id = boton.getAttribute('data-id');
+                window.open(`/pages/editar.php?id=${id}`, '_blank');
+                setTimeout(location.reload(),1000);
             });
           });
         </script>
