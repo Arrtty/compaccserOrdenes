@@ -1,5 +1,5 @@
 <?php
-require_once ('../TCPDF-main/tcpdf.php');
+require_once('../TCPDF-main/tcpdf.php');
 
 
 class MYPDF extends TCPDF
@@ -86,10 +86,10 @@ $modelo = $datos['modelo'];
 $serie = $datos['serie'];
 // Datos del equipo 2
 $marca2 = $datos['marca2'];
-$modelo2 = $datos['modelo2']; 
-$serie2 = $datos['serie2']; 
-$tipo_equipo2 = $datos['equipo2'];  
-$descripcion2 = $datos['descripcion2']; 
+$modelo2 = $datos['modelo2'];
+$serie2 = $datos['serie2'];
+$tipo_equipo2 = $datos['equipo2'];
+$descripcion2 = $datos['descripcion2'];
 // Datos del equipo 3
 $marca3 = $datos['marca3'];
 $modelo3 = $datos['modelo3'];
@@ -152,31 +152,35 @@ $pdf->Cell(0, 10, 'Celular: ' . $telefono, 0, 1, 'R');
 
 //...Altura de las celdas por la altura del texto que contengan
 $altTexto = 0;
+$altTexto2 = 0;
+$altTexto3 = 0;
 
-$altTextoTE = $pdf->getStringHeight(45, $tipo_equipo);
-$altTextoM = $pdf->getStringHeight(45, $marca);
-$altTextoMD = $pdf->getStringHeight(45, $modelo);
-$altTextoS = $pdf->getStringHeight(45, $serie);
+$heights = [
+  $pdf->getStringHeight(45, $tipo_equipo),
+  $pdf->getStringHeight(45, $marca),
+  $pdf->getStringHeight(45, $modelo),
+  $pdf->getStringHeight(45, $serie)
+];
+$heights2 = [
+  $pdf->getStringHeight(45, $tipo_equipo2),
+  $pdf->getStringHeight(45, $marca2),
+  $pdf->getStringHeight(45, $modelo2),
+  $pdf->getStringHeight(45, $serie2)
+];
+$heights3 = [
+  $pdf->getStringHeight(45, $tipo_equipo3),
+  $pdf->getStringHeight(45, $marca3),
+  $pdf->getStringHeight(45, $modelo3),
+  $pdf->getStringHeight(45, $serie3)
+];
 
-if ($altTexto < $altTextoTE) {
-  $altTexto = $altTextoTE;
-}
-
-if ($altTexto < $altTextoM) {
-  $altTexto = $altTextoM;
-}
-
-if ($altTexto < $altTextoMD) {
-  $altTexto = $altTextoMD;
-}
-
-if ($altTexto < $altTextoS) {
-  $altTexto = $altTextoS;
-}
+$altTexto = max($altTexto, ...$heights);
+$altTexto2 = max($altTexto2, ...$heights2);
+$altTexto3 = max($altTexto3, ...$heights3);
 
 //Fin...
 
-$pdf->Cell(0, 10, 'Equipos', 1, 1, 'C');
+$pdf->Cell(0, 10, 'Equipo', 1, 1, 'C');
 $pdf->MultiCell(45, $altTexto, $tipo_equipo, 1, 'C', 0, 0);
 $pdf->MultiCell(45, $altTexto, $marca, 1, 'C', 0, 0);
 $pdf->MultiCell(45, $altTexto, $modelo, 1, 'C', 0, 0);
@@ -185,30 +189,31 @@ $pdf->MultiCell(45, $altTexto, $serie, 1, 'C', 0, 1);
 $pdf->Cell(0, 5, 'Descripcion de la falla', 1, 1, 'C');
 $pdf->MultiCell(180, 10, $descripcion, 0, 1);
 
-if($marca2 != null && $modelo2 != null && $serie2 != null && $tipo_equipo2 != null && $descripcion2 != null){
-  $pdf->Cell(0, 10, 'Equipos', 1, 1, 'C');
-  $pdf->MultiCell(45, $altTexto, $tipo_equipo2, 1, 'C', 0, 0);
-  $pdf->MultiCell(45, $altTexto, $marca2, 1, 'C', 0, 0);
-  $pdf->MultiCell(45, $altTexto, $modelo2, 1, 'C', 0, 0);
-  $pdf->MultiCell(45, $altTexto, $serie2, 1, 'C', 0, 1);
-  
+if ($marca2 != null && $modelo2 != null && $serie2 != null && $tipo_equipo2 != null && $descripcion2 != null) {
+  $pdf->Cell(0, 10, 'Equipo', 1, 1, 'C');
+  $pdf->MultiCell(45, $altTexto2, $tipo_equipo2, 1, 'C', 0, 0);
+  $pdf->MultiCell(45, $altTexto2, $marca2, 1, 'C', 0, 0);
+  $pdf->MultiCell(45, $altTexto2, $modelo2, 1, 'C', 0, 0);
+  $pdf->MultiCell(45, $altTexto2, $serie2, 1, 'C', 0, 1);
+
   $pdf->Cell(0, 5, 'Descripcion de la falla', 1, 1, 'C');
   $pdf->MultiCell(180, 10, $descripcion2, 0, 1);
 }
 
-if($marca3 != null && $modelo3 != null && $serie3 != null && $tipo_equipo3 != null && $descripcion3 != null){
-  $pdf->Cell(0, 10, 'Equipos', 1, 1, 'C');
-  $pdf->MultiCell(45, $altTexto, $tipo_equipo3, 1, 'C', 0, 0);
-  $pdf->MultiCell(45, $altTexto, $marca3, 1, 'C', 0, 0);
-  $pdf->MultiCell(45, $altTexto, $modelo3, 1, 'C', 0, 0);
-  $pdf->MultiCell(45, $altTexto, $serie3, 1, 'C', 0, 1);
-  
+if ($marca3 != null && $modelo3 != null && $serie3 != null && $tipo_equipo3 != null && $descripcion3 != null) {
+  $pdf->Cell(0, 10, 'Equipo', 1, 1, 'C');
+  $pdf->MultiCell(45, $altTexto3, $tipo_equipo3, 1, 'C', 0, 0);
+  $pdf->MultiCell(45, $altTexto3, $marca3, 1, 'C', 0, 0);
+  $pdf->MultiCell(45, $altTexto3, $modelo3, 1, 'C', 0, 0);
+  $pdf->MultiCell(45, $altTexto3, $serie3, 1, 'C', 0, 1);
+
   $pdf->Cell(0, 5, 'Descripcion de la falla', 1, 1, 'C');
   $pdf->MultiCell(180, 10, $descripcion3, 0, 1);
 }
 
+
 $pdf->Cell(0, 5, 'Accsesorios adicionales', 1, 1, 'C');
-$pdf->MultiCell(0, 10,  $accesorios, 0, 1);
+$pdf->MultiCell(0, 10, $accesorios, 0, 1);
 $pdf->Cell(180, 5, 'Observaciones en el procedimiento', 1, 1, 'C');
 $pdf->Ln(30); // Salto de línea para dejar espacio vacío
 
