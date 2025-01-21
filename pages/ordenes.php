@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<link rel='stylesheet' type='text/css' href='/css/ordenes.css' />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href='/css/ordenes.css' rel='stylesheet' type='text/css' />
 <html lang="es">
 
 <head>
@@ -30,9 +30,9 @@
           <th>Número de Orden</th>
           <th>Fecha</th>
           <th>Cliente</th>
-          <th>Marca</th>
           <th>Equipo</th>
-          <th>Falla</th>
+          <th>modelo</th>
+          <th>Serie</th>
           <th></th>
         </tr>
       </thead>
@@ -52,11 +52,10 @@
 
           $consulta = "SELECT * FROM ordenes
                          WHERE no_Orden LIKE '%$buscar%'
-                         OR fecha LIKE '%$buscar%'
                          OR cliente LIKE '%$buscar%'
                          OR equipo LIKE '%$buscar%'
                          OR modelo LIKE '%$buscar%'
-                         OR descripcion LIKE '%$buscar%'
+                         OR serie LIKE '%$buscar%'
                          ORDER BY no_Orden DESC";
         } else {
           $consulta = "SELECT * FROM ordenes ORDER BY no_Orden DESC";
@@ -80,9 +79,9 @@
           echo '<td>' . $fila['modelo'] . '</td>';
 
           $maxLineLength = 50;
-          $descripcion = $fila['descripcion'];
-          $wrappedDescripcion = wordwrap($descripcion, $maxLineLength, "\n", true);
-          echo '<td>' . nl2br($wrappedDescripcion) . '</td>';
+          $serie = $fila['serie'];
+          $wrappedSerie = wordwrap($serie, $maxLineLength, "\n", true);
+          echo '<td>' . nl2br($wrappedSerie) . '</td>';
 
           echo '<td>
           <a class="download-btn" href="/php/generar-pdfSQL.php?id=' . $fila['no_Orden'] . '"><i class="fas fa-file-download"></i></a>
@@ -103,14 +102,14 @@
               event.preventDefault();
 
               // Mostrar el cuadro de confirmación
-              const confirmDelete = window.confirm('¿Estás seguro de que quieres eliminar la orden '+ button.getAttribute('data-id') + '?');
+              const confirmDelete = window.confirm('¿Estás seguro de que quieres eliminar la orden ' + button.getAttribute('data-id') + '?');
 
               if (confirmDelete) {
                 const id = button.getAttribute('data-id');
 
                 // Si el usuario confirma, se abre la ventana
                 window.open(`/php/delete.php?id=${id}`, '_blank');
-                setTimeout(location.reload(),1000);
+                setTimeout(location.reload(), 1000);
               }
             });
           });
@@ -120,8 +119,8 @@
             boton.addEventListener('click', (event) => {
               event.preventDefault();
               id = boton.getAttribute('data-id');
-                window.open(`/pages/editar.php?id=${id}`, '_blank');
-                setTimeout(location.reload(),1000);
+              window.open(`/pages/editar.php?id=${id}`, '_blank');
+              setTimeout(location.reload(), 1000);
             });
           });
         </script>

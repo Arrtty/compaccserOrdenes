@@ -124,7 +124,7 @@ table {
 
 table th,
 table td {
-    padding: 12px;
+    padding: 8px;
     border: 1px solid #ddd;
     word-wrap: break-word;
     overflow: hidden;
