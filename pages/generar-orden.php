@@ -59,7 +59,7 @@
         <input type="text" id="serie0" name="serie" maxlength="245">
 
         <label for="descripcion">Descripción de la Falla:</label>
-        <textarea id="descripcion" name="descripcion" rows="4" oninput="autoExpand(this)" maxlength="245"></textarea>
+        <textarea id="descripcion" name="descripcion" rows="4" oninput="autoExpand(this)" ></textarea>
       </div>
       <!-- ---------------------------------------------------------------- -->
       <div class="device-section" id="section2" style="display: none;">
@@ -78,7 +78,7 @@
         <input type="text" id="serie2" name="serie2" maxlength="245">
 
         <label for="descripcion">Descripción de la Falla:</label>
-        <textarea id="descripcion2" name="descripcion2" rows="4" oninput="autoExpand(this)" maxlength="245"></textarea>
+        <textarea id="descripcion2" name="descripcion2" rows="4" oninput="autoExpand(this)" ></textarea>
       </div>
       <!-- ---------------------------------------------------------------- -->
       <div class="device-section" id="section3" style="display: none;">
@@ -97,7 +97,7 @@
         <input type="text" id="serie3" name="serie3" maxlength="245">
 
         <label for="descripcion">Descripción de la Falla:</label>
-        <textarea id="descripcion3" name="descripcion3" rows="4" oninput="autoExpand(this)" maxlength="245"></textarea>
+        <textarea id="descripcion3" name="descripcion3" rows="4" oninput="autoExpand(this)"></textarea>
       </div>
     </div>
 
@@ -109,7 +109,7 @@
 
     <!-- Non-repeated fields -->
     <label for="accesorios">Accesorios Recibidos:</label>
-    <textarea id="accesorios" name="accesorios" rows="4" oninput="autoExpand(this)" maxlength="245"></textarea>
+    <textarea id="accesorios" name="accesorios" rows="4" oninput="autoExpand(this)"></textarea>
 
     <label for="ingeniero">Ingeniero de Soporte:</label>
     <input type="text" id="ingeniero" name="ingeniero" list="lista_ingenieros">
