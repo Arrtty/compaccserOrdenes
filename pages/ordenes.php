@@ -27,7 +27,7 @@
     <table>
       <thead>
         <tr>
-          <th>Número de Orden</th>
+          <th class="numero-orden">Orden</th>
           <th>Fecha</th>
           <th>Cliente</th>
           <th>Equipo</th>
@@ -71,16 +71,16 @@
           echo '<td>' . $fila['fecha'] . '</td>';
           echo '<td>' . $fila['cliente'] . '</td>';
 
-          $maxLineLength = 30;
+          $maxLineLength = 50;
           $equipo = $fila['equipo'];
-          $wrappedEquipo = wordwrap($equipo, $maxLineLength, "\n", true);
+          $wrappedEquipo = wordwrap($equipo, $maxLineLength, "\n", false);
           echo '<td>' . nl2br($wrappedEquipo) . '</td>';
 
           echo '<td>' . $fila['modelo'] . '</td>';
 
           $maxLineLength = 50;
           $serie = $fila['serie'];
-          $wrappedSerie = wordwrap($serie, $maxLineLength, "\n", true);
+          $wrappedSerie = wordwrap($serie, $maxLineLength, "\n", false);
           echo '<td>' . nl2br($wrappedSerie) . '</td>';
 
           echo '<td>

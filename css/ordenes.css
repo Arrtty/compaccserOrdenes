@@ -128,11 +128,16 @@ table td {
     border: 1px solid #ddd;
     word-wrap: break-word;
     overflow: hidden;
-    white-space: nowrap;
+    white-space: wrap;
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: center;
     height: 6vmin;
+}
+
+th.numero-orden {
+    width: 100px;
+    /* Adjust the width as needed */
 }
 
 table th {
